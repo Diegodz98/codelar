@@ -40,7 +40,7 @@ class AddProductsCsv extends FormBase {
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
-      '#value' => t('Upload CSV & Delete Users'),
+      '#value' => t('Upload CSV & Add Products'),
       '#button_type' => 'primary',
     ];
     return $form;

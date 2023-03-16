@@ -71,7 +71,7 @@ class ProductListBuilder extends EntityListBuilder {
     $header['label'] = $this->t('Label');
     $header['status'] = $this->t('Status');
     $header['url'] = $this->t('Url');
-    $header['url'] = $this->t('Price');
+    $header['price'] = $this->t('Price');
     $header['uid'] = $this->t('Author');
     $header['created'] = $this->t('Created');
     $header['changed'] = $this->t('Updated');

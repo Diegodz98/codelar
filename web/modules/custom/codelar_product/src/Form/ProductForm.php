@@ -21,7 +21,6 @@ class ProductForm extends ContentEntityForm
       '#type' => 'textfield',
       '#title' => $this->t('Search for images'),
       '#description' => $this->t('Enter a search term to find images on Pixabay'),
-      '#required' => TRUE,
     ];
 
     // Agregar botón de búsqueda.
