@@ -72,7 +72,7 @@ class ProductController extends ControllerBase
     $query->accessCheck(FALSE);
     if (isset($filters['price_min'])) {
       if (!empty($filters['price_min'])) {
-        $query->condition('price', $filters['price_min'], '>');
+        $query->condition('price', $filters['price_min'], '>=');
       }
     }
     if (isset($filters['price_max'])) {

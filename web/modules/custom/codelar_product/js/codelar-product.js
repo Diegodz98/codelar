@@ -3,7 +3,7 @@
     attach: function (context, settings) {
       const copyButtons = document.querySelectorAll('.copy-button');
       copyButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
+        button.addEventListener('click', function (e) {
           const textToCopy = this.getAttribute('data-clipboard-text');
 
           const tempInput = document.createElement('input');
@@ -12,8 +12,8 @@
           tempInput.select();
           document.execCommand('copy');
           document.body.removeChild(tempInput);
+          e.preventDefault();
 
-          alert('URL copiada al portapapeles!');
         });
       });
     },
