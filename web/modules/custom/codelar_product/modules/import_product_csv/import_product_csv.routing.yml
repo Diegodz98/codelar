@@ -1,0 +1,7 @@
+import_product_csv.import:
+  path: '/admin/import-product-csv'
+  defaults:
+    _title: 'Add Products'
+    _form: 'Drupal\import_product_csv\Form\AddProductsCsv'
+  requirements:
+    _permission: 'administer product'

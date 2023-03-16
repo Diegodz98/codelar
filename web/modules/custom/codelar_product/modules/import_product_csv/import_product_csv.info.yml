@@ -1,0 +1,7 @@
+name: import_product_csv
+type: module
+description: Provides additional functionality for the site.
+package: Codelar
+core_version_requirement: ^9 || ^10
+dependencies:
+  - codelar_product

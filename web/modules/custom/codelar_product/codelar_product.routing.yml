@@ -1,0 +1,24 @@
+codelar_product.settings_form:
+  path: '/admin/config/system/codelar-product'
+  defaults:
+    _title: 'codelar_product settings'
+    _form: 'Drupal\codelar_product\Form\SettingsForm'
+  requirements:
+    _permission: 'administer codelar_product configuration'
+
+entity.product.settings:
+  path: 'admin/structure/product'
+  defaults:
+    _form: '\Drupal\codelar_product\Form\ProductSettingsForm'
+    _title: 'Product'
+  requirements:
+    _permission: 'administer product'
+
+codelar_product.list:
+  path: '/codelar-product/list'
+  defaults:
+    _title: 'List'
+    _controller: '\Drupal\codelar_product\Controller\ProductController::build'
+  requirements:
+    _permission: 'access content'
+

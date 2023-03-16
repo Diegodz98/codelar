@@ -1,0 +1,12 @@
+product.add_form:
+  title: 'Add product'
+  route_name: entity.product.add_form
+  appears_on:
+    - entity.product.collection
+product.list:
+  title: 'List products'
+  route_name:  codelar_product.list
+  appears_on:
+    - entity.product.collection
+
+

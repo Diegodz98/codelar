@@ -1,0 +1,26 @@
+
+{{ attach_library('codelar_product/codelar_product') }}
+
+<div class="container">
+  <div class="product-list">
+    <div class="row">
+      {% for image in data.images %}
+      <div class="col-md-3 col-sm-6 product" data-product-id="{{ product.id }}">
+        <div class="white-box">
+          <div class="wishlist-icon"></div>
+          <div class="product-img">
+             <img src="{{ image.url }}" alt="{{ image.alt }}">
+          </div>
+          <div class="product-bottom">
+
+      <button class="copy-button" data-clipboard-text="{{ image.url }}" class="copy-button">Copy URL</button>
+
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,8 @@
+
+product.import:
+  title: 'Import CSV'
+  route_name: import_product_csv.import
+  appears_on:
+    - entity.product.collection
+
+

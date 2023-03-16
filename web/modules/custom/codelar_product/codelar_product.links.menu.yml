@@ -1,0 +1,17 @@
+codelar_product.settings_form:
+  title: 'codelar_product'
+  description: 'Configure codelar_product.'
+  parent: system.admin_config_system
+  route_name: codelar_product.settings_form
+  weight: 10
+
+entity.product.settings:
+  title: 'Product'
+  description: 'Configure a Product entity type.'
+  route_name:  entity.product.settings
+  parent: system.admin_structure
+entity.product.collection:
+  title: 'Products'
+  description: 'List of products.'
+  route_name: entity.product.collection
+  parent: system.admin_content

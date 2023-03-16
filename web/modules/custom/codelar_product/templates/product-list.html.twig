@@ -1,0 +1,31 @@
+{{ attach_library('codelar_product/codelar_product') }}
+
+
+<div class="container">
+  <div class="row">
+    <button id="favorites-button" class="btn btn-outline-dark mt-5">Show only favorites</button>
+  </div>
+  <div class="product-list">
+    <div class="row">
+      {% for product in products %}
+      <div class="col-md-3 col-sm-6 product" data-product-id="{{ product.id }}">
+        <div class="white-box">
+          <div class="wishlist-icon"></div>
+          <div class="product-img">
+            <a href="javascript:void(0);"><img src="{{ product.url }}" /></a>
+          </div>
+          <div class="product-bottom">
+            <div class="product-name">{{ product.label }}</div>
+            <div class="price">
+              <p class="rupee-icon">{{ product.price }}</p>
+            </div>
+            <button class="favorite-button" data-product-id="{{ product.id }}"></button>
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+

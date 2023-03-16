@@ -1,0 +1,93 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for codelar_product module.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\codelar_product\Entity\Product;
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function codelar_product_theme() {
+  return [
+    'product' => [
+      'render element' => 'elements',
+    ],
+    'product_list' => [
+      'variables' => ['products' => []],
+      'template' => 'product-list',
+    ],
+    'image_grid' => [
+      'variables' => ['data' => []],
+      'template' => 'image-grid',
+    ],
+
+  ];
+}
+
+/**
+ * Prepares variables for product templates.
+ *
+ * Default template: product.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the product information and any
+ *     fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_product(array &$variables) {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function codelar_product_user_cancel($edit, UserInterface $account, $method) {
+  switch ($method) {
+    case 'user_cancel_block_unpublish':
+      // Unpublish products.
+      $storage = \Drupal::entityTypeManager()->getStorage('product');
+      $product_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->condition('status', 1)
+        ->execute();
+      foreach ($storage->loadMultiple($product_ids) as $product) {
+        $product->set('status', FALSE);
+        $product->save();
+      }
+      break;
+
+    case 'user_cancel_reassign':
+      // Anonymize products.
+      $storage = \Drupal::entityTypeManager()->getStorage('product');
+      $product_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->execute();
+      foreach ($storage->loadMultiple($product_ids) as $product) {
+        $product->setOwnerId(0);
+        $product->save();
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for user entities.
+ */
+function codelar_product_user_predelete(UserInterface $account) {
+  // Delete products.
+  $storage = \Drupal::entityTypeManager()->getStorage('product');
+  $product_ids = $storage->getQuery()
+    ->condition('uid', $account->id())
+    ->execute();
+  $products = $storage->loadMultiple($product_ids);
+  $storage->delete($products);
+}
